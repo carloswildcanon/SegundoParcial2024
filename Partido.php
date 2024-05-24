@@ -78,8 +78,38 @@ class Partido{
          $this->coefBase = $coefBase;
     }
       public function getCoefBase(){
+        
         return $this->coefBase;
     }
+
+
+    public function coeficientePartido(){
+        $coefBase=$this->getCoefBase();
+        $cantGolesTotales=$this->getCantGolesE1+$this->getCantGolesE2;
+     
+        $cantJugadoresE1=$this->getObjEquipo1->getCantJugadores();
+        $cantJugadoresE2=$this->getObjEquipo2->getCantJugadores();
+        $cantJugadores=$cantGolesE1+$cantGolesE2;
+        $coefPardtido=.5* $cantGolesTotales* $cantJugadores;
+        return $coefPardtido;
+    }
+
+
+
+    public function darEquipoGanador() {
+        $cantGolE1=$this->getCantGolesE1();
+        $cantGolE2=$this->getCantGolesE2();
+        
+        if($cantGolE1 >= $cantGolE2){
+            $ganador=$this->getObjEquipo1;
+        }elseif($cantGolE1 <= $cantGolE2){
+            $ganador=$this->getObjEquipo2;
+        }else{
+            $ganador=[$this->getObjEquipo1,$this->getObjEquipo2];
+        }
+        return $ganador;
+    }
+
 
 
 
